@@ -61,11 +61,14 @@ class Router {
 	attach() {
 		let anchors = this.target.querySelectorAll('a')
 		for(let anchor of anchors) {
+			let href = anchor.getAttribute('href')
+			if(href.includes('://')) continue
 			anchor.addEventListener('click', e => {
 				e.preventDefault()
-				this.navigate(anchor.getAttribute('href'))
+				this.navigate(href)
 				return false
-			})	
+			})		
+			
 		}
 	}
 	strip(path) {
